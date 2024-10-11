@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { TailSpin } from 'react-loader-spinner'; 
 import https from '../../axios';
+import { useNavigate } from 'react-router-dom';
 
 const ScrollPagination = () => {
   const [photos, setPhotos] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const defaultImage = 'https://picsum.photos/200/300';
-
-  
+  const navigate = useNavigate()
+  function handleHome(){
+    navigate("/")
+  }
   const fetchPhotos = async () => {
     setLoading(true);
     try {
@@ -36,6 +39,11 @@ const ScrollPagination = () => {
 
   return (
     <div onScroll={handleScroll} className="overflow-y-scroll p-4 h-[1000px]">
+      <header className=" w-full h-10  flex gap-10 items-center">
+        {" "}
+        <button className="text-slate-500 uppercase font-bold bg-green-200 px-4 py-1 rounded" onClick={handleHome}>home</button>
+        
+      </header>  
       <h1 className="text-2xl font-bold mb-4">Food Blog</h1>
       
      
@@ -51,9 +59,8 @@ const ScrollPagination = () => {
                 src={photo.thumbnailUrl} 
                 alt={photo.title} 
                 onError={(e) => { e.target.src = defaultImage; }} 
-                className="w-full h- object-cover"
+                className="w-full h-96 object-cover"
               />
-              <h3 className="p-2 text-center">{photo.title}</h3>
             </div>
           ))}
         </div>  

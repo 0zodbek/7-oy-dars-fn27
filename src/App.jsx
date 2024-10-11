@@ -5,9 +5,10 @@ import Scrol from './components/Scrol'
 function App() {
   return (
     <div>
+      
       <Routes>
         <Route path='/' element={<ResponsivPagination></ResponsivPagination>}></Route>
-        <Route path = '/scroll' element = {<Scrol></Scrol>}></Route>
+        <Route path='/scroll' element = {<Scrol></Scrol>}></Route>
       </Routes>
     </div>
   )
